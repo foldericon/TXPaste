@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3783A146-5F24-4DFD-B5FE-8B19D419800A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TXURLDumper</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>352F5FC2-A76D-48EC-8C4B-B5961AF83358</key>
+		<string>ssh://github.com/foldericon/TXURLDumper.git</string>
+		<key>5B5589D6-EFD5-49CE-8297-AABAF872BA4A</key>
+		<string>ssh://github.com/ccgus/fmdb.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TXURLDumper.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>352F5FC2-A76D-48EC-8C4B-B5961AF83358</key>
+		<string>../..</string>
+		<key>5B5589D6-EFD5-49CE-8297-AABAF872BA4A</key>
+		<string>../../Classes/fmdb</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/foldericon/TXURLDumper.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>352F5FC2-A76D-48EC-8C4B-B5961AF83358</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5B5589D6-EFD5-49CE-8297-AABAF872BA4A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>fmdb</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>352F5FC2-A76D-48EC-8C4B-B5961AF83358</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TXURLDumper</string>
+		</dict>
+	</array>
+</dict>
+</plist>
