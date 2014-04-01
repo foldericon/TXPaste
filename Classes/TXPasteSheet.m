@@ -128,8 +128,8 @@
         NSString *str = [self.langBox stringValue];
         NSAssertReturn(str.length > 0);
         BOOL found = NO;
-        for (NSString *lang in self.plugin.languages) {
-            if ([lang.lowercaseString hasPrefix:str.lowercaseString]) {
+        for (NSDictionary *dict in self.plugin.languages) {
+            if ([[[dict objectForKey:@"name"] lowercaseString] hasPrefix:str.lowercaseString]) {
                 found = YES;
                 break;
             }
@@ -144,9 +144,9 @@
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 {
     NSString *str = [self.langBox stringValue];
-    for (NSString *lang in self.plugin.languages) {
-        if ([lang.lowercaseString hasPrefix:str.lowercaseString]) {
-            [self.langBox setStringValue:lang];
+    for (NSDictionary *dict in self.plugin.languages) {
+        if ([[[dict objectForKey:@"name"] lowercaseString] hasPrefix:str.lowercaseString]) {
+            [self.langBox setStringValue:[dict objectForKey:@"name"]];
             break;
         }
     }
