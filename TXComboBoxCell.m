@@ -28,17 +28,27 @@
  ===============================================================================
 */
 
-#import <TextualApplication.h>
-#import "TXPasteHelper.h"
 
-@interface TXPaste : NSObject
+#import "TXComboBoxCell.h"
 
-@property (assign) NSArray *languages;
+@implementation TXComboBoxCell
 
-- (NSArray *)pluginSupportsUserInputCommands;
-- (void)messageSentByUser:(IRCClient *)client
-				  message:(NSString *)messageString
-				  command:(NSString *)commandString;
-- (void)pasteURL:(NSString *)url;
+- (NSString *)completedString:(NSString *)string
+{
+    NSString *result = nil;
+    
+    if (string == nil)
+        return result;
+    
+    for (NSString *item in self.objectValues) {
+        NSString *truncatedString = [item substringToIndex:MIN(item.length, string.length)];
+        if ([truncatedString caseInsensitiveCompare:string] == NSOrderedSame) {
+            result = item;
+            break;
+        }
+    }
+    
+    return result;
+}
 
 @end

@@ -32,17 +32,21 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import "TextualApplication.h"
+#import "TXPasteHelper.h"
 #import "TXPaste.h"
 
-@interface TXPasteSheet : NSObject <NSWindowDelegate>
+@interface TXPasteSheet : NSObject <NSWindowDelegate, NSComboBoxDelegate, NSTextFieldDelegate>
 
 @property (assign) TXPaste *plugin;
 @property (assign) NSString *pasteURL;
 @property (assign) NSWindow *window;
 @property (assign) IBOutlet NSWindow *sheet;
-@property (assign) IBOutlet WebView *webView;
+@property (assign) IBOutlet NSMatrix *expiration;
+@property (assign) IBOutlet NSTextField *pasteText;
+@property (assign) IBOutlet NSComboBox *langBox;
 
 - (void)start;
+- (IBAction)paste:(id)sender;
 - (IBAction)close:(id)sender;
 
 @end

@@ -28,17 +28,21 @@
  ===============================================================================
 */
 
-#import <TextualApplication.h>
-#import "TXPasteHelper.h"
 
-@interface TXPaste : NSObject
+#import <Cocoa/Cocoa.h>
+#import "TXPaste.h"
 
-@property (assign) NSArray *languages;
+@interface TXPasteHelper : NSObject {
+	id delegate;
+	NSMutableData *receivedData;
+}
+@property (nonatomic,retain) NSMutableData *receivedData;
+@property (retain) id delegate;
+@property (assign) NSString *postString;
+@property (assign) NSURL *url;
+@property (assign) NSURL *finalURL;
+@property (nonatomic,copy)void (^completionBlock) (NSError *error);
 
-- (NSArray *)pluginSupportsUserInputCommands;
-- (void)messageSentByUser:(IRCClient *)client
-				  message:(NSString *)messageString
-				  command:(NSString *)commandString;
-- (void)pasteURL:(NSString *)url;
+- (void)get: (NSURL *)url;
 
 @end

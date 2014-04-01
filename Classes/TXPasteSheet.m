@@ -33,6 +33,8 @@
 
 @implementation TXPasteSheet
 
+#define _pasteURL @"https://ghostbin.com/paste/new"
+
 - (id)init
 {
 	if ((self = [super init])) {
@@ -47,12 +49,26 @@
 {
     NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
     [self.sheet setFrame:rect display:YES];
+    [self.langBox setDelegate:self];
+    NSColor *color = [NSColor colorWithCalibratedRed:0.09 green:0.09 blue:0.09 alpha:1.0];
+    NSTextView *fieldEditor = (NSTextView*)[self.pasteText.window fieldEditor:YES forObject:self.pasteText];
+    if([TPCPreferences invertSidebarColors]) {
+        [self.pasteText setBackgroundColor:color];
+        [self.pasteText setTextColor:[NSColor whiteColor]];
+        [fieldEditor setInsertionPointColor:[NSColor whiteColor]];
+    } else {
+        [self.pasteText setBackgroundColor:[NSColor whiteColor]];
+        [self.pasteText setTextColor:color];
+        [fieldEditor setInsertionPointColor:color];
+    }
+    [self.pasteText setDelegate:self];
+    [self.sheet makeFirstResponder:self.pasteText];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
-     [self.window makeKeyAndOrderFront:self.sheet];
+    [self.window makeKeyAndOrderFront:self.sheet];
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -65,22 +81,86 @@
     [NSApp endSheet:self.sheet];
 }
 
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [self.webView setMainFrameURL:[NSString stringWithFormat:@"file://%@/Library/Application Support/Textual IRC/Extensions/TXPaste.bundle/Contents/Resources/html/index.html", NSHomeDirectory()]];
-    });
+- (IBAction)paste:(id)sender {
+    NSString *langid;
+    for (NSDictionary *dict in self.plugin.languages) {
+        if ([[dict objectForKey:@"name"] isEqualToString:self.langBox.stringValue]) {
+            langid = [dict objectForKey:@"id"];
+            break;
+        }
+    }
+    NSString *expire;
+    switch (self.expiration.selectedTag) {
+        case (1):
+            expire = @"-1";
+            break;
+        case (2):
+            expire = @"10m";
+            break;
+        case (3):
+            expire = @"1h";
+            break;
+        case (4):
+            expire = @"1d";
+            break;
+    }
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", langid, self.pasteText.stringValue, expire];
+    TXPasteHelper *helper = [[TXPasteHelper alloc] init];
+    [helper setDelegate:self];
+    [helper setPostString:postString];
+    [helper setCompletionBlock:^(NSError *error) {
+        if (error.code == 100){
+            [self.plugin pasteURL:[helper.finalURL absoluteString]];
+        }
+    }];
+    [helper get:[NSURL URLWithString:_pasteURL]];
+    [NSApp endSheet:self.sheet];
 }
 
--(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+
+#pragma mark -
+#pragma mark Delegate Methods
+
+- (void)controlTextDidChange:(NSNotification *)notification
 {
-    NSURL *url = [NSURL URLWithString:sender.mainFrameURL];
-    if([url.pathComponents count] < 2) return;
-    if([[url.pathComponents objectAtIndex:1] isEqualToString:@"paste"]) {
-        [self close:nil];
-        [self.plugin pasteURL:[url absoluteString]];
-        [self.webView setMainFrameURL:@"https://ghostbin.com/"];        
+    if([notification object] == self.langBox)
+    {
+        NSString *str = [self.langBox stringValue];
+        NSAssertReturn(str.length > 0);
+        BOOL found = NO;
+        for (NSString *lang in self.plugin.languages) {
+            if ([lang.lowercaseString hasPrefix:str.lowercaseString]) {
+                found = YES;
+                break;
+            }
+        }
+        if(found == NO) {
+            str = [str substringToIndex:[str length]-1];
+            [self.langBox setStringValue:str];
+        }
     }
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)notification
+{
+    NSString *str = [self.langBox stringValue];
+    for (NSString *lang in self.plugin.languages) {
+        if ([lang.lowercaseString hasPrefix:str.lowercaseString]) {
+            [self.langBox setStringValue:lang];
+            break;
+        }
+    }
+}
+
+- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
+{
+    BOOL result = NO;
+    if (commandSelector == @selector(insertNewline:))
+    {
+        [textView insertNewlineIgnoringFieldEditor:self];
+        result = YES;
+    }
+    return result;
 }
 
 @end

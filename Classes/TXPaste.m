@@ -32,10 +32,37 @@
 #import "TXPaste.h"
 #import "TXPasteSheet.h"
 
+#define _langURL @"https://ghostbin.com/languages.json"
+
 @implementation TXPaste
 
 #pragma mark -
 #pragma mark Plugin API
+
+- (void)pluginLoadedIntoMemory:(IRCWorld *)world
+{
+    TXPasteHelper *helper = [[TXPasteHelper alloc] init];
+    [helper setDelegate:self];
+    __block NSError *e;
+    __block NSMutableArray *langs = [[NSMutableArray alloc] init];
+    [helper setCompletionBlock:^(NSError *error) {
+        if(error.code == 100) {
+            NSArray *ary = [NSJSONSerialization JSONObjectWithData:helper.receivedData options:0 error:&e];
+            for (NSDictionary *dict in ary) {
+                for (NSDictionary *dict2 in [dict objectForKey:@"languages"]) {
+                    [langs addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                      [dict2 objectForKey:@"id"], @"id",
+                                      [dict2 objectForKey:@"name"], @"name",
+                                      nil]];
+                }
+            }
+        }
+        if (langs.count > 0) {
+            self.languages = langs;
+        }
+    }];
+    [helper get:[NSURL URLWithString:_langURL]];
+}
 
 - (NSArray *)pluginSupportsUserInputCommands
 {
@@ -51,6 +78,11 @@
     TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
     pasteSheet.plugin = self;
     pasteSheet.window = self.masterController.mainWindow;
+
+    for (NSDictionary *dict in self.languages) {
+        [pasteSheet.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
+    }
+    
     [pasteSheet start];
     
 }
@@ -60,14 +92,6 @@
     IRCClient *client = self.worldController.selectedClient;
     IRCChannel *channel = self.worldController.selectedChannel;
     [client sendCommand:[NSString stringWithFormat:@"MSG %@ %@", channel.name, url]];
-}
-
-#pragma mark -
-#pragma mark Private API
-
-- (IBAction)github:(id)sender
-{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/foldericon/TXURLDumper"]];
 }
 
 @end

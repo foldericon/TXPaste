@@ -28,17 +28,9 @@
  ===============================================================================
 */
 
-#import <TextualApplication.h>
-#import "TXPasteHelper.h"
 
-@interface TXPaste : NSObject
+#import <Cocoa/Cocoa.h>
 
-@property (assign) NSArray *languages;
-
-- (NSArray *)pluginSupportsUserInputCommands;
-- (void)messageSentByUser:(IRCClient *)client
-				  message:(NSString *)messageString
-				  command:(NSString *)commandString;
-- (void)pasteURL:(NSString *)url;
-
+@interface TXComboBoxCell : NSComboBoxCell
+- (NSString *)completedString:(NSString *)string;
 @end

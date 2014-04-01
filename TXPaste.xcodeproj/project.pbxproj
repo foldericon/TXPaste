@@ -9,23 +9,11 @@
 /* Begin PBXBuildFile section */
 		4C51BE9412D0471600E79CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51BE9312D0471600E79CEB /* Cocoa.framework */; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
-		DA000FFC18D73F6F00BBF55B /* application.min.js in Sources */ = {isa = PBXBuildFile; fileRef = DA000FF018D73F6F00BBF55B /* application.min.js */; };
-		DA000FFD18D73F6F00BBF55B /* lib.min.js in Sources */ = {isa = PBXBuildFile; fileRef = DA000FF118D73F6F00BBF55B /* lib.min.js */; };
-		DA00100018D7400400BBF55B /* ghostbin.min.css in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FE518D73F6F00BBF55B /* ghostbin.min.css */; };
-		DA00100118D7400400BBF55B /* lib.min.css in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FE618D73F6F00BBF55B /* lib.min.css */; };
-		DA00100218D7400400BBF55B /* theme.min.css in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FE718D73F6F00BBF55B /* theme.min.css */; };
-		DA00100418D7404E00BBF55B /* envy_code_r-webfont.woff in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FE918D73F6F00BBF55B /* envy_code_r-webfont.woff */; };
-		DA00100518D7404E00BBF55B /* envy_code_r_bold-webfont.woff in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FEA18D73F6F00BBF55B /* envy_code_r_bold-webfont.woff */; };
-		DA00100618D7404E00BBF55B /* fontello.woff in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FEB18D73F6F00BBF55B /* fontello.woff */; };
-		DA00100718D7404E00BBF55B /* lmsans10-bold-webfont.woff in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FEC18D73F6F00BBF55B /* lmsans10-bold-webfont.woff */; };
-		DA00100818D7404E00BBF55B /* lmsans10-regular-webfont.woff in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FED18D73F6F00BBF55B /* lmsans10-regular-webfont.woff */; };
-		DA00100A18D7406300BBF55B /* application.min.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FF018D73F6F00BBF55B /* application.min.js */; };
-		DA00100B18D7406300BBF55B /* lib.min.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FF118D73F6F00BBF55B /* lib.min.js */; };
-		DA00100D18D740CA00BBF55B /* index.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FEE18D73F6F00BBF55B /* index.html */; };
-		DA00100E18D740CA00BBF55B /* select2.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DA000FF218D73F6F00BBF55B /* select2.png */; };
+		DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */; };
 		DA71508717588C3100DC2063 /* TXPaste.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71508117588C3100DC2063 /* TXPaste.m */; };
 		DA71508B17588C4200DC2063 /* PasteSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71508817588C4200DC2063 /* PasteSheet.xib */; };
 		DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */; };
+		DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA89514718EB036A00FB7648 /* TXComboBoxCell.m */; };
 		DAF00ED418D70F3000048B07 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF00ED318D70F3000048B07 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,9 +24,6 @@
 			dstPath = html/css;
 			dstSubfolderSpec = 7;
 			files = (
-				DA00100018D7400400BBF55B /* ghostbin.min.css in CopyFiles */,
-				DA00100118D7400400BBF55B /* lib.min.css in CopyFiles */,
-				DA00100218D7400400BBF55B /* theme.min.css in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,11 +33,6 @@
 			dstPath = html/fonts;
 			dstSubfolderSpec = 7;
 			files = (
-				DA00100418D7404E00BBF55B /* envy_code_r-webfont.woff in CopyFiles */,
-				DA00100518D7404E00BBF55B /* envy_code_r_bold-webfont.woff in CopyFiles */,
-				DA00100618D7404E00BBF55B /* fontello.woff in CopyFiles */,
-				DA00100718D7404E00BBF55B /* lmsans10-bold-webfont.woff in CopyFiles */,
-				DA00100818D7404E00BBF55B /* lmsans10-regular-webfont.woff in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,8 +42,6 @@
 			dstPath = html/js;
 			dstSubfolderSpec = 7;
 			files = (
-				DA00100A18D7406300BBF55B /* application.min.js in CopyFiles */,
-				DA00100B18D7406300BBF55B /* lib.min.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +51,6 @@
 			dstPath = html;
 			dstSubfolderSpec = 7;
 			files = (
-				DA00100D18D740CA00BBF55B /* index.html in CopyFiles */,
-				DA00100E18D740CA00BBF55B /* select2.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,24 +60,16 @@
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		4C51BE9312D0471600E79CEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8D576316048677EA00EA77CD /* TXPaste.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TXPaste.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA000FE518D73F6F00BBF55B /* ghostbin.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ghostbin.min.css; sourceTree = "<group>"; };
-		DA000FE618D73F6F00BBF55B /* lib.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = lib.min.css; sourceTree = "<group>"; };
-		DA000FE718D73F6F00BBF55B /* theme.min.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = theme.min.css; sourceTree = "<group>"; };
-		DA000FE918D73F6F00BBF55B /* envy_code_r-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "envy_code_r-webfont.woff"; sourceTree = "<group>"; };
-		DA000FEA18D73F6F00BBF55B /* envy_code_r_bold-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "envy_code_r_bold-webfont.woff"; sourceTree = "<group>"; };
-		DA000FEB18D73F6F00BBF55B /* fontello.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontello.woff; sourceTree = "<group>"; };
-		DA000FEC18D73F6F00BBF55B /* lmsans10-bold-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lmsans10-bold-webfont.woff"; sourceTree = "<group>"; };
-		DA000FED18D73F6F00BBF55B /* lmsans10-regular-webfont.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lmsans10-regular-webfont.woff"; sourceTree = "<group>"; };
-		DA000FEE18D73F6F00BBF55B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		DA000FF018D73F6F00BBF55B /* application.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = application.min.js; sourceTree = "<group>"; };
-		DA000FF118D73F6F00BBF55B /* lib.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lib.min.js; sourceTree = "<group>"; };
-		DA000FF218D73F6F00BBF55B /* select2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select2.png; sourceTree = "<group>"; };
+		DA0F20ED18E9AF01001C95D1 /* TXPasteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXPasteHelper.h; sourceTree = "<group>"; };
+		DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXPasteHelper.m; sourceTree = "<group>"; };
 		DA71508017588C3100DC2063 /* TXPaste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPaste.h; path = Classes/TXPaste.h; sourceTree = "<group>"; };
 		DA71508117588C3100DC2063 /* TXPaste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPaste.m; path = Classes/TXPaste.m; sourceTree = "<group>"; };
 		DA71508817588C4200DC2063 /* PasteSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasteSheet.xib; path = Resources/PasteSheet.xib; sourceTree = "<group>"; };
 		DA71508917588C4200DC2063 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPasteSheet.h; path = Classes/TXPasteSheet.h; sourceTree = "<group>"; };
 		DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPasteSheet.m; path = Classes/TXPasteSheet.m; sourceTree = "<group>"; };
+		DA89514618EB036A00FB7648 /* TXComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXComboBoxCell.h; sourceTree = "<group>"; };
+		DA89514718EB036A00FB7648 /* TXComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXComboBoxCell.m; sourceTree = "<group>"; };
 		DAF00ED318D70F3000048B07 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -143,7 +111,6 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DA000FE318D73F6F00BBF55B /* html */,
 				DA71508917588C4200DC2063 /* Info.plist */,
 				DA71508817588C4200DC2063 /* PasteSheet.xib */,
 			);
@@ -153,6 +120,10 @@
 		08FB77AFFE84173DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DA89514618EB036A00FB7648 /* TXComboBoxCell.h */,
+				DA89514718EB036A00FB7648 /* TXComboBoxCell.m */,
+				DA0F20ED18E9AF01001C95D1 /* TXPasteHelper.h */,
+				DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */,
 				DA71508017588C3100DC2063 /* TXPaste.h */,
 				DA71508117588C3100DC2063 /* TXPaste.m */,
 				DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */,
@@ -167,50 +138,6 @@
 				8D576316048677EA00EA77CD /* TXPaste.bundle */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DA000FE318D73F6F00BBF55B /* html */ = {
-			isa = PBXGroup;
-			children = (
-				DA000FE418D73F6F00BBF55B /* css */,
-				DA000FE818D73F6F00BBF55B /* fonts */,
-				DA000FEE18D73F6F00BBF55B /* index.html */,
-				DA000FEF18D73F6F00BBF55B /* js */,
-				DA000FF218D73F6F00BBF55B /* select2.png */,
-			);
-			name = html;
-			path = Resources/html;
-			sourceTree = "<group>";
-		};
-		DA000FE418D73F6F00BBF55B /* css */ = {
-			isa = PBXGroup;
-			children = (
-				DA000FE518D73F6F00BBF55B /* ghostbin.min.css */,
-				DA000FE618D73F6F00BBF55B /* lib.min.css */,
-				DA000FE718D73F6F00BBF55B /* theme.min.css */,
-			);
-			path = css;
-			sourceTree = "<group>";
-		};
-		DA000FE818D73F6F00BBF55B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				DA000FE918D73F6F00BBF55B /* envy_code_r-webfont.woff */,
-				DA000FEA18D73F6F00BBF55B /* envy_code_r_bold-webfont.woff */,
-				DA000FEB18D73F6F00BBF55B /* fontello.woff */,
-				DA000FEC18D73F6F00BBF55B /* lmsans10-bold-webfont.woff */,
-				DA000FED18D73F6F00BBF55B /* lmsans10-regular-webfont.woff */,
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
-		DA000FEF18D73F6F00BBF55B /* js */ = {
-			isa = PBXGroup;
-			children = (
-				DA000FF018D73F6F00BBF55B /* application.min.js */,
-				DA000FF118D73F6F00BBF55B /* lib.min.js */,
-			);
-			path = js;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA71508717588C3100DC2063 /* TXPaste.m in Sources */,
-				DA000FFC18D73F6F00BBF55B /* application.min.js in Sources */,
-				DA000FFD18D73F6F00BBF55B /* lib.min.js in Sources */,
+				DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */,
+				DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */,
 				DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
