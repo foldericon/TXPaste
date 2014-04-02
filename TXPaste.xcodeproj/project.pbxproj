@@ -13,8 +13,6 @@
 		DA71508717588C3100DC2063 /* TXPaste.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71508117588C3100DC2063 /* TXPaste.m */; };
 		DA71508B17588C4200DC2063 /* PasteSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71508817588C4200DC2063 /* PasteSheet.xib */; };
 		DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */; };
-		DA7E264E18EC5C0A00991724 /* MarkerLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E264918EC5C0A00991724 /* MarkerLineNumberView.m */; };
-		DA7E264F18EC5C0A00991724 /* NoodleLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E264B18EC5C0A00991724 /* NoodleLineNumberMarker.m */; };
 		DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */; };
 		DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA89514718EB036A00FB7648 /* TXComboBoxCell.m */; };
 		DAF00ED418D70F3000048B07 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF00ED318D70F3000048B07 /* WebKit.framework */; };
@@ -71,10 +69,6 @@
 		DA71508917588C4200DC2063 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPasteSheet.h; path = Classes/TXPasteSheet.h; sourceTree = "<group>"; };
 		DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPasteSheet.m; path = Classes/TXPasteSheet.m; sourceTree = "<group>"; };
-		DA7E264818EC5C0A00991724 /* MarkerLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerLineNumberView.h; sourceTree = "<group>"; };
-		DA7E264918EC5C0A00991724 /* MarkerLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerLineNumberView.m; sourceTree = "<group>"; };
-		DA7E264A18EC5C0A00991724 /* NoodleLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberMarker.h; sourceTree = "<group>"; };
-		DA7E264B18EC5C0A00991724 /* NoodleLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberMarker.m; sourceTree = "<group>"; };
 		DA7E264C18EC5C0A00991724 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
 		DA89514618EB036A00FB7648 /* TXComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXComboBoxCell.h; sourceTree = "<group>"; };
@@ -129,10 +123,6 @@
 		08FB77AFFE84173DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DA7E264818EC5C0A00991724 /* MarkerLineNumberView.h */,
-				DA7E264918EC5C0A00991724 /* MarkerLineNumberView.m */,
-				DA7E264A18EC5C0A00991724 /* NoodleLineNumberMarker.h */,
-				DA7E264B18EC5C0A00991724 /* NoodleLineNumberMarker.m */,
 				DA7E264C18EC5C0A00991724 /* NoodleLineNumberView.h */,
 				DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */,
 				DA89514618EB036A00FB7648 /* TXComboBoxCell.h */,
@@ -241,12 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */,
-				DA7E264E18EC5C0A00991724 /* MarkerLineNumberView.m in Sources */,
 				DA71508717588C3100DC2063 /* TXPaste.m in Sources */,
 				DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */,
 				DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */,
 				DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */,
-				DA7E264F18EC5C0A00991724 /* NoodleLineNumberMarker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

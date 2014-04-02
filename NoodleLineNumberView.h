@@ -29,14 +29,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class NoodleLineNumberMarker;
-
 @interface NoodleLineNumberView : NSRulerView
 {
     // Array of character indices for the beginning of each line
     NSMutableArray      *lineIndices;
-	// Maps line numbers to markers
-	NSMutableDictionary	*linesToMarkers;
 	NSFont              *font;
 	NSColor				*textColor;
 	NSColor				*alternateTextColor;
@@ -58,6 +54,5 @@
 - (NSColor *)backgroundColor;
 
 - (unsigned)lineNumberForLocation:(float)location;
-- (NoodleLineNumberMarker *)markerAtLine:(unsigned)line;
 
 @end

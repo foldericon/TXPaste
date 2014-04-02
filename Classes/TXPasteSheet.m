@@ -32,8 +32,6 @@
 #import "TXPasteSheet.h"
 #import "TXPaste.h"
 #import "NoodleLineNumberView.h"
-#import "NoodleLineNumberMarker.h"
-#import "MarkerLineNumberView.h"
 
 @implementation TXPasteSheet
 
@@ -43,7 +41,7 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             [NSBundle loadNibNamed:@"PasteSheet" owner:self];
         });
-        lineNumbersView = [[MarkerLineNumberView alloc] initWithScrollView:scrollView];
+        lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
         [scrollView setVerticalRulerView:lineNumbersView];
         [scrollView setHasHorizontalRuler:NO];
         [scrollView setHasVerticalRuler:YES];

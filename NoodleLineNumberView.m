@@ -28,7 +28,6 @@
 //
 
 #import "NoodleLineNumberView.h"
-#import "NoodleLineNumberMarker.h"
 
 #define DEFAULT_THICKNESS	15.0
 #define RULER_MARGIN		3.0
@@ -50,7 +49,6 @@
 {
     if ((self = [super initWithScrollView:aScrollView orientation:NSVerticalRuler]) != nil)
     {
-		linesToMarkers = [[NSMutableDictionary alloc] init];
 		
         [self setClientView:[aScrollView documentView]];
     }
@@ -59,7 +57,6 @@
 
 - (void)awakeFromNib
 {
-	linesToMarkers = [[NSMutableDictionary alloc] init];
 	[self setClientView:[[self scrollView] documentView]];
 }
 
@@ -68,7 +65,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [lineIndices release];
-	[linesToMarkers release];
     [font release];
     
     [super dealloc];
@@ -230,11 +226,6 @@
 	return (unsigned)NSNotFound;
 }
 
-- (NoodleLineNumberMarker *)markerAtLine:(unsigned)line
-{
-	return [linesToMarkers objectForKey:[NSNumber numberWithUnsignedInt:line - 1]];
-}
-
 
 - (void)calculateLines
 {
@@ -384,16 +375,14 @@
     {
         NSLayoutManager			*layoutManager;
         NSTextContainer			*container;
-        NSRect					visibleRect, markerRect;
+        NSRect					visibleRect;
         NSRange					range, glyphRange, nullRange;
         NSString				*text, *labelText;
         NSUInteger				rectCount, index, line, count;
         NSRectArray				rects;
         float					ypos, yinset;
         NSDictionary			*textAttributes, *currentTextAttributes;
-        NSSize					stringSize, markerSize;
-		NoodleLineNumberMarker	*marker;
-		NSImage					*markerImage;
+        NSSize					stringSize;
 		NSMutableArray			*lines;
 
         layoutManager = [view layoutManager];
@@ -435,35 +424,13 @@
                     // Note that the ruler view is only as tall as the visible
                     // portion. Need to compensate for the clipview's coordinates.
                     ypos = yinset + NSMinY(rects[0]) - NSMinY(visibleRect);
-					
-					marker = [linesToMarkers objectForKey:[NSNumber numberWithUnsignedLong:line]];
-					
-					if (marker != nil)
-					{
-						markerImage = [marker image];
-						markerSize = [markerImage size];
-						markerRect = NSMakeRect(0.0, 0.0, markerSize.width, markerSize.height);
-
-						// Marker is flush right and centered vertically within the line.
-						markerRect.origin.x = NSWidth(bounds) - [markerImage size].width - 1.0;
-						markerRect.origin.y = ypos + NSHeight(rects[0]) / 2.0 - [marker imageOrigin].y;
-
-						[markerImage drawInRect:markerRect fromRect:NSMakeRect(0, 0, markerSize.width, markerSize.height) operation:NSCompositeSourceOver fraction:1.0];
-					}
                     
                     // Line numbers are internally stored starting at 0
                     labelText = [NSString stringWithFormat:@"%lu", line + 1];
                     
                     stringSize = [labelText sizeWithAttributes:textAttributes];
 
-					if (marker == nil)
-					{
-						currentTextAttributes = textAttributes;
-					}
-					else
-					{
-						currentTextAttributes = [self markerTextAttributes];
-					}
+                    currentTextAttributes = [self markerTextAttributes];
 					
                     // Draw string flush right, centered vertically within the line
                     [labelText drawInRect:
@@ -481,45 +448,6 @@
     }
 }
 
-- (void)setMarkers:(NSArray *)markers
-{
-	NSEnumerator		*enumerator;
-	NSRulerMarker		*marker;
-	
-	[linesToMarkers removeAllObjects];
-	[super setMarkers:nil];
-
-	enumerator = [markers objectEnumerator];
-	while ((marker = [enumerator nextObject]) != nil)
-	{
-		[self addMarker:marker];
-	}
-}
-
-- (void)addMarker:(NSRulerMarker *)aMarker
-{
-	if ([aMarker isKindOfClass:[NoodleLineNumberMarker class]])
-	{
-		[linesToMarkers setObject:aMarker
-							forKey:[NSNumber numberWithUnsignedInt:[(NoodleLineNumberMarker *)aMarker lineNumber] - 1]];
-	}
-	else
-	{
-		[super addMarker:aMarker];
-	}
-}
-
-- (void)removeMarker:(NSRulerMarker *)aMarker
-{
-	if ([aMarker isKindOfClass:[NoodleLineNumberMarker class]])
-	{
-		[linesToMarkers removeObjectForKey:[NSNumber numberWithUnsignedInt:[(NoodleLineNumberMarker *)aMarker lineNumber] - 1]];
-	}
-	else
-	{
-		[super removeMarker:aMarker];
-	}
-}
 
 #pragma mark NSCoding methods
 
@@ -546,8 +474,6 @@
 			alternateTextColor = [[decoder decodeObject] retain];
 			backgroundColor = [[decoder decodeObject] retain];
 		}
-		
-		linesToMarkers = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
