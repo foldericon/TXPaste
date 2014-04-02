@@ -30,10 +30,9 @@
 
 
 #import "TXPasteSheet.h"
+#import "TXPaste.h"
 
 @implementation TXPasteSheet
-
-#define _pasteURL @"https://ghostbin.com/paste/new"
 
 - (id)init
 {
@@ -50,6 +49,7 @@
     NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
     [self.sheet setFrame:rect display:YES];
     [self.langBox setDelegate:self];
+    [self.pasteText setDelegate:self];
     NSColor *color = [NSColor colorWithCalibratedRed:0.09 green:0.09 blue:0.09 alpha:1.0];
     NSTextView *fieldEditor = (NSTextView*)[self.pasteText.window fieldEditor:YES forObject:self.pasteText];
     if([TPCPreferences invertSidebarColors]) {
@@ -61,7 +61,6 @@
         [self.pasteText setTextColor:color];
         [fieldEditor setInsertionPointColor:color];
     }
-    [self.pasteText setDelegate:self];
     [self.sheet makeFirstResponder:self.pasteText];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
@@ -83,7 +82,7 @@
 
 - (IBAction)paste:(id)sender {
     NSString *langid;
-    for (NSDictionary *dict in self.plugin.languages) {
+    for (NSDictionary *dict in self.languages) {
         if ([[dict objectForKey:@"name"] isEqualToString:self.langBox.stringValue]) {
             langid = [dict objectForKey:@"id"];
             break;
@@ -105,15 +104,7 @@
             break;
     }
     NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", langid, self.pasteText.stringValue, expire];
-    TXPasteHelper *helper = [[TXPasteHelper alloc] init];
-    [helper setDelegate:self];
-    [helper setPostString:postString];
-    [helper setCompletionBlock:^(NSError *error) {
-        if (error.code == 100){
-            [self.plugin pasteURL:[helper.finalURL absoluteString]];
-        }
-    }];
-    [helper get:[NSURL URLWithString:_pasteURL]];
+    [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
 }
 
@@ -128,7 +119,7 @@
         NSString *str = [self.langBox stringValue];
         NSAssertReturn(str.length > 0);
         BOOL found = NO;
-        for (NSDictionary *dict in self.plugin.languages) {
+        for (NSDictionary *dict in self.languages) {
             if ([[[dict objectForKey:@"name"] lowercaseString] hasPrefix:str.lowercaseString]) {
                 found = YES;
                 break;
@@ -144,7 +135,7 @@
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 {
     NSString *str = [self.langBox stringValue];
-    for (NSDictionary *dict in self.plugin.languages) {
+    for (NSDictionary *dict in self.languages) {
         if ([[[dict objectForKey:@"name"] lowercaseString] hasPrefix:str.lowercaseString]) {
             [self.langBox setStringValue:[dict objectForKey:@"name"]];
             break;

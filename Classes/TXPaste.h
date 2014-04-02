@@ -29,16 +29,13 @@
 */
 
 #import <TextualApplication.h>
-#import "TXPasteHelper.h"
 
 @interface TXPaste : NSObject
-
-@property (assign) NSArray *languages;
 
 - (NSArray *)pluginSupportsUserInputCommands;
 - (void)messageSentByUser:(IRCClient *)client
 				  message:(NSString *)messageString
 				  command:(NSString *)commandString;
-- (void)pasteURL:(NSString *)url;
++ (void)paste:(NSString *)postString;
 
 @end

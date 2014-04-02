@@ -30,7 +30,6 @@
 
 
 #import <Cocoa/Cocoa.h>
-#import "TXPaste.h"
 
 @interface TXPasteHelper : NSObject {
 	id delegate;

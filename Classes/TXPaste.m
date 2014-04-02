@@ -30,11 +30,15 @@
 
 
 #import "TXPaste.h"
+#import "TXPasteHelper.h"
 #import "TXPasteSheet.h"
 
 #define _langURL @"https://ghostbin.com/languages.json"
+#define _pasteURL @"https://ghostbin.com/paste/new"
 
 @implementation TXPaste
+
+NSMutableArray *languages;
 
 #pragma mark -
 #pragma mark Plugin API
@@ -44,21 +48,18 @@
     TXPasteHelper *helper = [[TXPasteHelper alloc] init];
     [helper setDelegate:self];
     __block NSError *e;
-    __block NSMutableArray *langs = [[NSMutableArray alloc] init];
+    languages = [[NSMutableArray alloc] init];
     [helper setCompletionBlock:^(NSError *error) {
         if(error.code == 100) {
             NSArray *ary = [NSJSONSerialization JSONObjectWithData:helper.receivedData options:0 error:&e];
             for (NSDictionary *dict in ary) {
                 for (NSDictionary *dict2 in [dict objectForKey:@"languages"]) {
-                    [langs addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                    [languages addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                       [dict2 objectForKey:@"id"], @"id",
                                       [dict2 objectForKey:@"name"], @"name",
                                       nil]];
                 }
             }
-        }
-        if (langs.count > 0) {
-            self.languages = langs;
         }
     }];
     [helper get:[NSURL URLWithString:_langURL]];
@@ -76,22 +77,28 @@
     if([commandString isNotEqualTo:@"PASTE"])
         return;
     TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
-    pasteSheet.plugin = self;
     pasteSheet.window = self.masterController.mainWindow;
-
-    for (NSDictionary *dict in self.languages) {
+    pasteSheet.languages = languages;
+    for (NSDictionary *dict in pasteSheet.languages) {
         [pasteSheet.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
     }
-    
     [pasteSheet start];
     
 }
 
-- (void)pasteURL:(NSString *)url
++ (void)paste:(NSString *)postString
 {
-    IRCClient *client = self.worldController.selectedClient;
-    IRCChannel *channel = self.worldController.selectedChannel;
-    [client sendCommand:[NSString stringWithFormat:@"MSG %@ %@", channel.name, url]];
+    TXPasteHelper *helper = [[TXPasteHelper alloc] init];
+    [helper setDelegate:self];
+    [helper setPostString:postString];
+    [helper setCompletionBlock:^(NSError *error) {
+        if (error.code == 100){
+            IRCClient *client = self.worldController.selectedClient;
+            IRCChannel *channel = self.worldController.selectedChannel;
+            [client sendCommand:[NSString stringWithFormat:@"MSG %@ %@", channel.name, helper.finalURL.absoluteString]];
+        }
+    }];
+    [helper get:[NSURL URLWithString:_pasteURL]];
 }
 
 @end

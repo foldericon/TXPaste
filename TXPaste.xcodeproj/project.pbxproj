@@ -154,6 +154,7 @@
 				DA00100C18D740B300BBF55B /* CopyFiles */,
 				8D576311048677EA00EA77CD /* Sources */,
 				8D576313048677EA00EA77CD /* Frameworks */,
+				DA2142ED18EBADD3002731AE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -202,6 +203,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA2142ED18EBADD3002731AE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "source /Users/toby/.bash_profile\ntxpaste";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D576311048677EA00EA77CD /* Sources */ = {
