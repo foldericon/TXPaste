@@ -34,14 +34,19 @@
 #import "TextualApplication.h"
 #import "TXPasteHelper.h"
 
-@interface TXPasteSheet : NSObject <NSWindowDelegate, NSComboBoxDelegate, NSTextFieldDelegate>
+@class NoodleLineNumberView;
+
+@interface TXPasteSheet : NSObject <NSWindowDelegate, NSComboBoxDelegate, NSTextViewDelegate> {
+    NoodleLineNumberView *lineNumbersView;
+    IBOutlet NSScrollView *scrollView;
+}
 
 @property (assign) NSArray *languages;
 @property (assign) NSString *pasteURL;
 @property (assign) NSWindow *window;
 @property (assign) IBOutlet NSWindow *sheet;
 @property (assign) IBOutlet NSMatrix *expiration;
-@property (assign) IBOutlet NSTextField *pasteText;
+@property (assign) IBOutlet NSTextView *pasteText;
 @property (assign) IBOutlet NSComboBox *langBox;
 
 - (void)start;

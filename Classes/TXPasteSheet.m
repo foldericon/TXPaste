@@ -31,6 +31,9 @@
 
 #import "TXPasteSheet.h"
 #import "TXPaste.h"
+#import "NoodleLineNumberView.h"
+#import "NoodleLineNumberMarker.h"
+#import "MarkerLineNumberView.h"
 
 @implementation TXPasteSheet
 
@@ -40,6 +43,11 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             [NSBundle loadNibNamed:@"PasteSheet" owner:self];
         });
+        lineNumbersView = [[MarkerLineNumberView alloc] initWithScrollView:scrollView];
+        [scrollView setVerticalRulerView:lineNumbersView];
+        [scrollView setHasHorizontalRuler:NO];
+        [scrollView setHasVerticalRuler:YES];
+        [scrollView setRulersVisible:YES];
     }
 	return self;
 }
@@ -50,25 +58,26 @@
     [self.sheet setFrame:rect display:YES];
     [self.langBox setDelegate:self];
     [self.pasteText setDelegate:self];
+    [self.pasteText setFont:[NSFont userFixedPitchFontOfSize:[NSFont systemFontSize]]];
     NSColor *color = [NSColor colorWithCalibratedRed:0.09 green:0.09 blue:0.09 alpha:1.0];
-    NSTextView *fieldEditor = (NSTextView*)[self.pasteText.window fieldEditor:YES forObject:self.pasteText];
     if([TPCPreferences invertSidebarColors]) {
+        [lineNumbersView setBackgroundColor:color];
         [self.pasteText setBackgroundColor:color];
         [self.pasteText setTextColor:[NSColor whiteColor]];
-        [fieldEditor setInsertionPointColor:[NSColor whiteColor]];
+        [self.pasteText setInsertionPointColor:[NSColor whiteColor]];
     } else {
+        [lineNumbersView setBackgroundColor:[NSColor whiteColor]];
         [self.pasteText setBackgroundColor:[NSColor whiteColor]];
         [self.pasteText setTextColor:color];
-        [fieldEditor setInsertionPointColor:color];
+        [self.pasteText setInsertionPointColor:color];
     }
-    [self.sheet makeFirstResponder:self.pasteText];
+    [self.sheet makeFirstResponder:scrollView];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
-    [self.window makeKeyAndOrderFront:self.sheet];
-    [self.pasteText becomeFirstResponder];
+    [self.window makeKeyAndOrderFront:self.sheet];    
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -104,7 +113,7 @@
             expire = @"1d";
             break;
     }
-    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", langid, self.pasteText.stringValue, expire];
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", langid, self.pasteText.string, expire];
     [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
 }
@@ -142,17 +151,6 @@
             break;
         }
     }
-}
-
-- (BOOL)control:(NSControl*)control textView:(NSTextView*)textView doCommandBySelector:(SEL)commandSelector
-{
-    BOOL result = NO;
-    if (commandSelector == @selector(insertNewline:))
-    {
-        [textView insertNewlineIgnoringFieldEditor:self];
-        result = YES;
-    }
-    return result;
 }
 
 @end
