@@ -68,6 +68,7 @@
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
     [self.window makeKeyAndOrderFront:self.sheet];
+    [self.pasteText becomeFirstResponder];
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
