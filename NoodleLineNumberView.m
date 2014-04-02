@@ -186,7 +186,7 @@
 
 - (unsigned)lineNumberForLocation:(float)location
 {
-	unsigned		line, count, index, rectCount, i;
+	NSUInteger		line, count, index, rectCount, i;
 	NSRectArray		rects;
 	NSRect			visibleRect;
 	NSLayoutManager	*layoutManager;
@@ -222,12 +222,12 @@
 			{
 				if ((location >= NSMinY(rects[i])) && (location < NSMaxY(rects[i])))
 				{
-					return line + 1;
+					return (unsigned)line + 1;
 				}
 			}
 		}	
 	}
-	return NSNotFound;
+	return (unsigned)NSNotFound;
 }
 
 - (NoodleLineNumberMarker *)markerAtLine:(unsigned)line
@@ -244,7 +244,7 @@
     
     if ([view isKindOfClass:[NSTextView class]])
     {
-        unsigned        index, numberOfLines, stringLength, lineEnd, contentEnd;
+        NSUInteger        index, numberOfLines, stringLength, lineEnd, contentEnd;
         NSString        *text;
         float         oldThickness, newThickness;
         
@@ -258,7 +258,7 @@
         
         do
         {
-            [lineIndices addObject:[NSNumber numberWithUnsignedInt:index]];
+            [lineIndices addObject:[NSNumber numberWithUnsignedLong:index]];
             
             index = NSMaxRange([text lineRangeForRange:NSMakeRange(index, 0)]);
             numberOfLines++;
@@ -269,7 +269,7 @@
         [text getLineStart:NULL end:&lineEnd contentsEnd:&contentEnd forRange:NSMakeRange([[lineIndices lastObject] unsignedIntValue], 0)];
         if (contentEnd < lineEnd)
         {
-            [lineIndices addObject:[NSNumber numberWithUnsignedInt:index]];
+            [lineIndices addObject:[NSNumber numberWithUnsignedLong:index]];
         }
 
         oldThickness = [self ruleThickness];
@@ -292,7 +292,7 @@
 
 - (unsigned)lineNumberForCharacterIndex:(unsigned)index inText:(NSString *)text
 {
-    unsigned			left, right, mid, lineStart;
+    NSUInteger			left, right, mid, lineStart;
 	NSMutableArray		*lines;
 
 	lines = [self lineIndices];
@@ -316,10 +316,10 @@
         }
         else
         {
-            return mid;
+            return (unsigned)mid;
         }
     }
-    return left;
+    return (unsigned)left;
 }
 
 - (NSDictionary *)textAttributes
@@ -338,9 +338,9 @@
 				nil];
 }
 
-- (float)requiredThickness
+- (double)requiredThickness
 {
-    unsigned			lineCount, digits, i;
+    NSUInteger			lineCount, digits, i;
     NSMutableString     *sampleString;
     NSSize              stringSize;
     
@@ -387,7 +387,7 @@
         NSRect					visibleRect, markerRect;
         NSRange					range, glyphRange, nullRange;
         NSString				*text, *labelText;
-        unsigned				rectCount, index, line, count;
+        NSUInteger				rectCount, index, line, count;
         NSRectArray				rects;
         float					ypos, yinset;
         NSDictionary			*textAttributes, *currentTextAttributes;
@@ -419,7 +419,7 @@
         count = [lines count];
         index = 0;
         
-        for (line = [self lineNumberForCharacterIndex:range.location inText:text]; line < count; line++)
+        for (line = [self lineNumberForCharacterIndex:(int)range.location inText:text]; line < count; line++)
         {
             index = [[lines objectAtIndex:line] unsignedIntValue];
             
@@ -436,7 +436,7 @@
                     // portion. Need to compensate for the clipview's coordinates.
                     ypos = yinset + NSMinY(rects[0]) - NSMinY(visibleRect);
 					
-					marker = [linesToMarkers objectForKey:[NSNumber numberWithUnsignedInt:line]];
+					marker = [linesToMarkers objectForKey:[NSNumber numberWithUnsignedLong:line]];
 					
 					if (marker != nil)
 					{
@@ -452,7 +452,7 @@
 					}
                     
                     // Line numbers are internally stored starting at 0
-                    labelText = [NSString stringWithFormat:@"%d", line + 1];
+                    labelText = [NSString stringWithFormat:@"%lu", line + 1];
                     
                     stringSize = [labelText sizeWithAttributes:textAttributes];
 
