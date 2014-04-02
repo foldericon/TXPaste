@@ -67,7 +67,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
 							 initWithURL:self.url
 							 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-							 timeoutInterval: 60
+							 timeoutInterval: 30
 							 ];
 
     if(self.postString) {

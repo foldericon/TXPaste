@@ -60,6 +60,9 @@ NSMutableArray *languages;
                                       nil]];
                 }
             }
+        } else {
+            IRCClient *client = self.worldController.selectedClient;
+            [client printDebugInformation:[NSString stringWithFormat:@"TXPaste: Unable to fetch list of languages (%@)", error.userInfo]];
         }
     }];
     [helper get:[NSURL URLWithString:_langURL]];
@@ -92,10 +95,12 @@ NSMutableArray *languages;
     [helper setDelegate:self];
     [helper setPostString:postString];
     [helper setCompletionBlock:^(NSError *error) {
+        IRCClient *client = self.worldController.selectedClient;
+        IRCChannel *channel = self.worldController.selectedChannel;
         if (error.code == 100){
-            IRCClient *client = self.worldController.selectedClient;
-            IRCChannel *channel = self.worldController.selectedChannel;
             [client sendCommand:[NSString stringWithFormat:@"MSG %@ %@", channel.name, helper.finalURL.absoluteString]];
+        } else {
+            [client printDebugInformation:[NSString stringWithFormat:@"TXPaste: Unable to paste (%@)", error.userInfo]];
         }
     }];
     [helper get:[NSURL URLWithString:_pasteURL]];
