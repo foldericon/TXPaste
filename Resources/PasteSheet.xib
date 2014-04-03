@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="31">
-                        <rect key="frame" x="598" y="13" width="84" height="32"/>
+                        <rect key="frame" x="598" y="7" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -41,7 +41,7 @@ Gw
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="lkM-3f-iWV">
-                        <rect key="frame" x="682" y="13" width="84" height="32"/>
+                        <rect key="frame" x="682" y="7" width="84" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Paste!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nKg-fy-ped">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -107,20 +107,20 @@ Gw
                         </textFieldCell>
                     </textField>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="33i-FY-Y7O">
-                        <rect key="frame" x="-1" y="61" width="782" height="260"/>
+                        <rect key="frame" x="-1" y="45" width="782" height="276"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="HUI-T9-2sz">
-                            <rect key="frame" x="1" y="1" width="780" height="258"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="HUI-T9-2sz">
+                            <rect key="frame" x="1" y="1" width="780" height="274"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="VGg-69-AjC">
-                                    <rect key="frame" x="0.0" y="0.0" width="780" height="258"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="780" height="274"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="780" height="258"/>
+                                    <size key="minSize" width="780" height="274"/>
                                     <size key="maxSize" width="782" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="780" height="258"/>
+                                    <size key="minSize" width="780" height="274"/>
                                     <size key="maxSize" width="782" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -131,7 +131,7 @@ Gw
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Nhd-go-ecg">
-                            <rect key="frame" x="765" y="1" width="16" height="258"/>
+                            <rect key="frame" x="765" y="1" width="16" height="274"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>

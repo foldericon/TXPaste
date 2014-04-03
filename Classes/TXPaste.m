@@ -31,7 +31,6 @@
 
 #import "TXPaste.h"
 #import "TXPasteHelper.h"
-#import "TXPasteSheet.h"
 
 #define _langURL @"https://ghostbin.com/languages.json"
 #define _pasteURL @"https://ghostbin.com/paste/new"
@@ -77,14 +76,8 @@ NSMutableArray *languages;
 				  message:(NSString *)messageString
 				  command:(NSString *)commandString
 {
-    if([commandString isNotEqualTo:@"PASTE"])
-        return;
-    TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
-    pasteSheet.window = self.masterController.mainWindow;
-    pasteSheet.languages = languages;
-    for (NSDictionary *dict in pasteSheet.languages) {
-        [pasteSheet.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
-    }
+    pasteSheet = [[TXPasteSheet alloc] init];
+    pasteSheet.languages = languages;    
     [pasteSheet start];
     
 }

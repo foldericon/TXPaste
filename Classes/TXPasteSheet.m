@@ -38,20 +38,22 @@
 - (id)init
 {
 	if ((self = [super init])) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [NSBundle loadNibNamed:@"PasteSheet" owner:self];
-        });
-        lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
-        [scrollView setVerticalRulerView:lineNumbersView];
-        [scrollView setHasHorizontalRuler:NO];
-        [scrollView setHasVerticalRuler:YES];
-        [scrollView setRulersVisible:YES];
+        [NSBundle loadNibNamed:@"PasteSheet" owner:self];
     }
 	return self;
 }
 
 -(void)start
 {
+    self.window = self.masterController.mainWindow;
+    NoodleLineNumberView *lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
+    [scrollView setVerticalRulerView:lineNumbersView];
+    [scrollView setHasHorizontalRuler:NO];
+    [scrollView setHasVerticalRuler:YES];
+    [scrollView setRulersVisible:YES];
+    for (NSDictionary *dict in self.languages) {
+        [self.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
+    }
     NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
     [self.sheet setFrame:rect display:YES];
     [self.langBox setDelegate:self];
@@ -75,7 +77,7 @@
 		modalDelegate:self
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
-    [self.window makeKeyAndOrderFront:self.sheet];    
+    [self.window makeKeyAndOrderFront:self.sheet];
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
