@@ -54,8 +54,6 @@
     for (NSDictionary *dict in self.languages) {
         [self.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
     }
-    NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
-    [self.sheet setFrame:rect display:YES];
     [self.langBox setDelegate:self];
     [self.pasteText setDelegate:self];
     [self.pasteText setFont:[NSFont userFixedPitchFontOfSize:[NSFont systemFontSize]]];
@@ -71,13 +69,16 @@
         [self.pasteText setTextColor:color];
         [self.pasteText setInsertionPointColor:color];
     }
-    [self.sheet makeFirstResponder:scrollView];
+    NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
+    [self.sheet setFrame:rect display:YES];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
     [self.window makeKeyAndOrderFront:self.sheet];
+    [self.sheet makeFirstResponder:self.langBox];
+    [self.sheet makeFirstResponder:self.pasteText];
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
