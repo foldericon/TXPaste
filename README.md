@@ -3,7 +3,7 @@ TXPaste
 
 __Easily paste code or just regular text of any length.__
 
-![Image](http://i.imgur.com/0WR3tkO.png)
+![Image](http://i.imgur.com/x6xD2r9.png)
 
 
 Requirements
