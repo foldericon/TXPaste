@@ -32,11 +32,12 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #import "TextualApplication.h"
+#import "TXPaste.h"
 #import "TXPasteHelper.h"
 
 @class NoodleLineNumberView;
 
-@interface TXPasteSheet : NSObject <NSComboBoxDelegate, NSTextViewDelegate> {
+@interface TXPasteSheet : TXPastePrefs <NSComboBoxDelegate, NSTextViewDelegate> {
     IBOutlet NSScrollView *scrollView;
 }
 

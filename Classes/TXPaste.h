@@ -29,11 +29,9 @@
 */
 
 #import <TextualApplication.h>
-#import "TXPasteSheet.h"
+#import "TXPastePrefs.h"
 
-@interface TXPaste : NSObject {
-    TXPasteSheet *pasteSheet;
-}
+@interface TXPaste : TXPastePrefs
 
 - (NSArray *)pluginSupportsUserInputCommands;
 - (void)messageSentByUser:(IRCClient *)client

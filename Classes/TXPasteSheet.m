@@ -30,7 +30,6 @@
 
 
 #import "TXPasteSheet.h"
-#import "TXPaste.h"
 #import "NoodleLineNumberView.h"
 
 @implementation TXPasteSheet
@@ -45,6 +44,8 @@
 
 -(void)start
 {
+    NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, self.pasteSheetWidth, self.pasteSheetHeight);
+    [self.sheet setFrame:rect display:YES];
     self.window = self.masterController.mainWindow;
     NoodleLineNumberView *lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
     [scrollView setVerticalRulerView:lineNumbersView];
@@ -69,8 +70,6 @@
         [self.pasteText setTextColor:color];
         [self.pasteText setInsertionPointColor:color];
     }
-    NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, 775, 375);
-    [self.sheet setFrame:rect display:YES];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
@@ -83,6 +82,7 @@
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
+    [self setWindowSizeWidth:(int)self.sheet.frame.size.width height:(int)self.sheet.frame.size.height];
     [self.sheet close];
 }
 
@@ -119,6 +119,13 @@
     [NSApp endSheet:self.sheet];
 }
 
+- (void)setWindowSizeWidth:(NSInteger)width height:(NSInteger)height
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
+    [dict setObject:[NSNumber numberWithInteger:width] forKey:TXPasteSheetWidthKey];
+    [dict setObject:[NSNumber numberWithInteger:height] forKey:TXPasteSheetHeightKey];
+    [self setPreferences:dict];
+}
 
 #pragma mark -
 #pragma mark Delegate Methods

@@ -14,6 +14,7 @@
 		DA71508B17588C4200DC2063 /* PasteSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71508817588C4200DC2063 /* PasteSheet.xib */; };
 		DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */; };
 		DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */; };
+		DA846A7E18F1840800A93C43 /* TXPastePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = DA846A7D18F1840800A93C43 /* TXPastePrefs.m */; };
 		DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA89514718EB036A00FB7648 /* TXComboBoxCell.m */; };
 		DAF00ED418D70F3000048B07 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF00ED318D70F3000048B07 /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,8 @@
 		DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPasteSheet.m; path = Classes/TXPasteSheet.m; sourceTree = "<group>"; };
 		DA7E264C18EC5C0A00991724 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
 		DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
+		DA846A7C18F1840800A93C43 /* TXPastePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXPastePrefs.h; sourceTree = "<group>"; };
+		DA846A7D18F1840800A93C43 /* TXPastePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXPastePrefs.m; sourceTree = "<group>"; };
 		DA89514618EB036A00FB7648 /* TXComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXComboBoxCell.h; sourceTree = "<group>"; };
 		DA89514718EB036A00FB7648 /* TXComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXComboBoxCell.m; sourceTree = "<group>"; };
 		DAF00ED318D70F3000048B07 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -129,6 +132,8 @@
 				DA89514718EB036A00FB7648 /* TXComboBoxCell.m */,
 				DA0F20ED18E9AF01001C95D1 /* TXPasteHelper.h */,
 				DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */,
+				DA846A7C18F1840800A93C43 /* TXPastePrefs.h */,
+				DA846A7D18F1840800A93C43 /* TXPastePrefs.m */,
 				DA71508017588C3100DC2063 /* TXPaste.h */,
 				DA71508117588C3100DC2063 /* TXPaste.m */,
 				DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */,
@@ -232,6 +237,7 @@
 			files = (
 				DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */,
 				DA71508717588C3100DC2063 /* TXPaste.m in Sources */,
+				DA846A7E18F1840800A93C43 /* TXPastePrefs.m in Sources */,
 				DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */,
 				DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */,
 				DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */,
