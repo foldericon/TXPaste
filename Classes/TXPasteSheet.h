@@ -45,7 +45,7 @@
 @property (assign) NSString *pasteURL;
 @property (assign) NSWindow *window;
 @property (assign) IBOutlet NSWindow *sheet;
-@property (assign) IBOutlet NSMatrix *expiration;
+@property (assign) IBOutlet NSMatrix *expBox;
 @property (assign) IBOutlet NSTextView *pasteText;
 @property (assign) IBOutlet NSComboBox *langBox;
 

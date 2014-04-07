@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TXPasteSheet">
             <connections>
-                <outlet property="expiration" destination="mQy-z6-FSo" id="nyb-oj-SPF"/>
+                <outlet property="expBox" destination="mQy-z6-FSo" id="C30-Ko-1as"/>
                 <outlet property="langBox" destination="yGY-d9-WEP" id="fAv-aU-sFD"/>
                 <outlet property="pasteText" destination="VGg-69-AjC" id="75v-Zg-3c4"/>
                 <outlet property="scrollView" destination="33i-FY-Y7O" id="O4L-EY-lqk"/>

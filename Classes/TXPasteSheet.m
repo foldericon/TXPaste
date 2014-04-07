@@ -70,6 +70,8 @@
         [self.pasteText setTextColor:color];
         [self.pasteText setInsertionPointColor:color];
     }
+    [self.langBox setStringValue:[self getLangById:self.language]];
+    [self.expBox selectCellWithTag:self.expiration];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
@@ -80,27 +82,68 @@
     [self.sheet makeFirstResponder:self.pasteText];
 }
 
-- (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    [self setWindowSizeWidth:(int)self.sheet.frame.size.width height:(int)self.sheet.frame.size.height];
-    [self.sheet close];
-}
-
 - (IBAction)close:(id)sender
 {
     [NSApp endSheet:self.sheet];
 }
 
 - (IBAction)paste:(id)sender {
+    [self saveSettings];
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", [self getLangId], self.pasteText.string, [self getExpiration]];
+    [TXPaste paste:postString];
+    [NSApp endSheet:self.sheet];
+}
+
+- (void)saveSettings
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
+    [dict setObject:[NSNumber numberWithInteger:self.expBox.selectedTag] forKey:TXPasteExpirationKey];
+    [dict setObject:[self getLangId] forKey:TXPasteLanguageKey];
+    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
+    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
+    [self setPreferences:dict];
+}
+
+- (void)saveWindowSize
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
+    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
+    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
+    [self setPreferences:dict];
+}
+
+
+#pragma mark -
+#pragma mark Helper Methods
+
+- (NSString *)getLangById:(NSString *)string
+{
+    NSString *lang;
+    for (NSDictionary *dict in self.languages) {
+        if ([[dict objectForKey:@"id"] isEqualToString:string]) {
+            lang = [dict objectForKey:@"name"];
+            break;
+        }
+    }
+    return lang;
+}
+
+- (NSString *)getLangId
+{
     NSString *langid;
     for (NSDictionary *dict in self.languages) {
-        if ([[dict objectForKey:@"name"] isEqualToString:self.langBox.stringValue]) {
+        if ([[dict objectForKey:@"name"] isEqualIgnoringCase:self.langBox.stringValue]) {
             langid = [dict objectForKey:@"id"];
             break;
         }
     }
+    return langid;
+}
+
+- (NSString *)getExpiration
+{
     NSString *expire;
-    switch (self.expiration.selectedTag) {
+    switch (self.expBox.selectedTag) {
         case (1):
             expire = @"-1";
             break;
@@ -114,21 +157,19 @@
             expire = @"1d";
             break;
     }
-    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", langid, self.pasteText.string, expire];
-    [TXPaste paste:postString];
-    [NSApp endSheet:self.sheet];
+    return expire;
 }
 
-- (void)setWindowSizeWidth:(NSInteger)width height:(NSInteger)height
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
-    [dict setObject:[NSNumber numberWithInteger:width] forKey:TXPasteSheetWidthKey];
-    [dict setObject:[NSNumber numberWithInteger:height] forKey:TXPasteSheetHeightKey];
-    [self setPreferences:dict];
-}
 
 #pragma mark -
 #pragma mark Delegate Methods
+
+- (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+    [self saveWindowSize];
+    [self.sheet close];
+}
+
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {

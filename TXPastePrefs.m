@@ -10,6 +10,8 @@
 
 NSString *TXPasteSheetWidthKey = @"TXPasteSheetWidth";
 NSString *TXPasteSheetHeightKey = @"TXPasteSheetHeight";
+NSString *TXPasteExpirationKey = @"TXPasteExpiration";
+NSString *TXPasteLanguageKey = @"TXPasteLanguage";
 
 @implementation TXPastePrefs
 
@@ -20,6 +22,8 @@ NSString *TXPasteSheetHeightKey = @"TXPasteSheetHeight";
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               @"778", TXPasteSheetWidthKey,
                               @"350", TXPasteSheetHeightKey,
+                              @"1", TXPasteExpirationKey,
+                              @"text", TXPasteLanguageKey,
                               nil];
         [self setPreferences:dict];
     }
@@ -35,6 +39,16 @@ NSString *TXPasteSheetHeightKey = @"TXPasteSheetHeight";
 - (NSString *)preferencesPath
 {
     return [[NSString stringWithFormat:@"%@/Library/Preferences/%@.plist", NSHomeDirectory(), [[NSBundle bundleForClass:[self class]] bundleIdentifier]] stringByExpandingTildeInPath];
+}
+
+- (NSInteger)expiration
+{
+    return [[self.preferences objectForKey:TXPasteExpirationKey] integerValue];
+}
+
+- (NSString *)language
+{
+    return [self.preferences objectForKey:TXPasteLanguageKey];
 }
 
 - (NSInteger)pasteSheetWidth
