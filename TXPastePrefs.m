@@ -22,7 +22,7 @@ NSString *TXPasteLanguageKey = @"TXPasteLanguage";
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               @"778", TXPasteSheetWidthKey,
                               @"350", TXPasteSheetHeightKey,
-                              @"1", TXPasteExpirationKey,
+                              @"-1", TXPasteExpirationKey,
                               @"text", TXPasteLanguageKey,
                               nil];
         [self setPreferences:dict];
@@ -41,9 +41,9 @@ NSString *TXPasteLanguageKey = @"TXPasteLanguage";
     return [[NSString stringWithFormat:@"%@/Library/Preferences/%@.plist", NSHomeDirectory(), [[NSBundle bundleForClass:[self class]] bundleIdentifier]] stringByExpandingTildeInPath];
 }
 
-- (NSInteger)expiration
+- (NSString *)expiration
 {
-    return [[self.preferences objectForKey:TXPasteExpirationKey] integerValue];
+    return [self.preferences objectForKey:TXPasteExpirationKey];
 }
 
 - (NSString *)language

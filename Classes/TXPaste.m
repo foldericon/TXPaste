@@ -78,7 +78,7 @@ NSMutableArray *languages;
 				  command:(NSString *)commandString
 {
     if([messageString length] > 1) {
-        NSString *postString = [NSString stringWithFormat:@"lang=text&text=%@&expire=-1", messageString];
+        NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", self.language, messageString, self.expiration];
         [TXPaste paste:postString];
     } else {
         TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];

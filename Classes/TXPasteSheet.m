@@ -32,6 +32,8 @@
 #import "TXPasteSheet.h"
 #import "NoodleLineNumberView.h"
 
+#define _expAry [NSArray arrayWithObjects:@"-1", @"10m", @"1h", @"1d", nil]
+
 @implementation TXPasteSheet
 
 - (id)init
@@ -71,7 +73,7 @@
         [self.pasteText setInsertionPointColor:color];
     }
     [self.langBox setStringValue:[self getLangById:self.language]];
-    [self.expBox selectCellWithTag:self.expiration];
+    [self.expBox selectCellWithTag:[self getExpirationTag:self.expiration]];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
@@ -97,7 +99,7 @@
 - (void)saveSettings
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
-    [dict setObject:[NSNumber numberWithInteger:self.expBox.selectedTag] forKey:TXPasteExpirationKey];
+    [dict setObject:[self getExpiration] forKey:TXPasteExpirationKey];
     [dict setObject:[self getLangId] forKey:TXPasteLanguageKey];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
@@ -142,24 +144,19 @@
 
 - (NSString *)getExpiration
 {
-    NSString *expire;
-    switch (self.expBox.selectedTag) {
-        case (1):
-            expire = @"-1";
-            break;
-        case (2):
-            expire = @"10m";
-            break;
-        case (3):
-            expire = @"1h";
-            break;
-        case (4):
-            expire = @"1d";
-            break;
-    }
-    return expire;
+    return _expAry[self.expBox.selectedTag-1];
 }
 
+- (NSInteger)getExpirationTag:(NSString *)expiration
+{
+    NSInteger i;
+    for(i=0; i<_expAry.count; i++) {
+        if ([_expAry[i] isEqualToString:expiration]) {
+            break;
+        }
+    }
+    return i+1;
+}
 
 #pragma mark -
 #pragma mark Delegate Methods
