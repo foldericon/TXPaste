@@ -90,7 +90,6 @@
 }
 
 - (IBAction)paste:(id)sender {
-    [self saveSettings];
     NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", [self getLangId], self.pasteText.string, [self getExpiration]];
     [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
@@ -101,14 +100,6 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
     [dict setObject:[self getExpiration] forKey:TXPasteExpirationKey];
     [dict setObject:[self getLangId] forKey:TXPasteLanguageKey];
-    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
-    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
-    [self setPreferences:dict];
-}
-
-- (void)saveWindowSize
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
     [self setPreferences:dict];
@@ -163,7 +154,7 @@
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-    [self saveWindowSize];
+    [self saveSettings];
     [self.sheet close];
 }
 
