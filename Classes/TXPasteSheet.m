@@ -90,8 +90,7 @@
 }
 
 - (IBAction)paste:(id)sender {
-    NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@", [self getLangId], self.pasteText.string];
-    NSLog(@"POSTDATA: %@", postString);
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@&redirect=1", [self getLangId], self.pasteText.string];
     [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
 }
