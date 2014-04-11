@@ -54,13 +54,13 @@ Gw
                     <comboBox verticalHuggingPriority="750" id="yGY-d9-WEP">
                         <rect key="frame" x="527" y="326" width="236" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Plain Text" drawsBackground="YES" numberOfVisibleItems="8" id="pIS-tI-9CP" customClass="TXComboBoxCell">
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="8" id="pIS-tI-9CP" customClass="TXComboBoxCell">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </comboBoxCell>
                     </comboBox>
-                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="mQy-z6-FSo">
+                    <matrix hidden="YES" verticalHuggingPriority="750" allowsEmptySelection="NO" id="mQy-z6-FSo">
                         <rect key="frame" x="101" y="329" width="368" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -97,7 +97,7 @@ Gw
                             </column>
                         </cells>
                     </matrix>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DqX-LA-PYw">
+                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DqX-LA-PYw">
                         <rect key="frame" x="18" y="330" width="91" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Expiration:" id="auC-yD-7eK">

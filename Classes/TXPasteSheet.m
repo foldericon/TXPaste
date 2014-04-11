@@ -90,7 +90,8 @@
 }
 
 - (IBAction)paste:(id)sender {
-    NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", [self getLangId], self.pasteText.string, [self getExpiration]];
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@", [self getLangId], self.pasteText.string];
+    NSLog(@"POSTDATA: %@", postString);
     [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
 }
@@ -111,10 +112,10 @@
 
 - (NSString *)getLangById:(NSString *)string
 {
-    NSString *lang;
+    NSMutableString *lang = [[NSMutableString alloc] init];
     for (NSDictionary *dict in self.languages) {
         if ([[dict objectForKey:@"id"] isEqualToString:string]) {
-            lang = [dict objectForKey:@"name"];
+            [lang appendString:[dict objectForKey:@"name"]];
             break;
         }
     }

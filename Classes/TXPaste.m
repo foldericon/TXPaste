@@ -33,8 +33,8 @@
 #import "TXPasteHelper.h"
 #import "TXPasteSheet.h"
 
-#define _langURL @"https://ghostbin.com/languages.json"
-#define _pasteURL @"https://ghostbin.com/paste/new"
+#define _langURL @"http://paste.directory/api/language/list"
+#define _pasteURL @"http://paste.directory/api/post"
 
 @implementation TXPaste
 
@@ -53,12 +53,10 @@ NSMutableArray *languages;
         if(error.code == 100) {
             NSArray *ary = [NSJSONSerialization JSONObjectWithData:helper.receivedData options:0 error:&e];
             for (NSDictionary *dict in ary) {
-                for (NSDictionary *dict2 in [dict objectForKey:@"languages"]) {
-                    [languages addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      [dict2 objectForKey:@"id"], @"id",
-                                      [dict2 objectForKey:@"name"], @"name",
+                [languages addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                      [dict objectForKey:@"API"], @"id",
+                                      [dict objectForKey:@"name"], @"name",
                                       nil]];
-                }
             }
         } else {
             IRCClient *client = self.worldController.selectedClient;
@@ -78,7 +76,7 @@ NSMutableArray *languages;
 				  command:(NSString *)commandString
 {
     if([messageString length] > 1) {
-        NSString *postString = [NSString stringWithFormat:@"lang=%@&text=%@&expire=%@", self.language, messageString, self.expiration];
+        NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@", self.language, messageString];
         [TXPaste paste:postString];
     } else {
         TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
