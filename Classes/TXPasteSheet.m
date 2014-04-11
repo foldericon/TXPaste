@@ -182,6 +182,10 @@
 - (void)controlTextDidEndEditing:(NSNotification *)notification
 {
     NSString *str = [self.langBox stringValue];
+    if([self.langBox.stringValue isEqualToString:@""]) {
+        [self.langBox setStringValue:[[self.languages objectAtIndex:0] objectForKey:@"name"]];
+        return;
+    }
     for (NSDictionary *dict in self.languages) {
         if ([[[dict objectForKey:@"name"] lowercaseString] hasPrefix:str.lowercaseString]) {
             [self.langBox setStringValue:[dict objectForKey:@"name"]];
