@@ -18,7 +18,7 @@ extern NSString *TXPasteLanguageKey;
 @property (assign) NSDictionary *preferences;
 @property (readonly) NSString *preferencesPath;
 @property (readonly) NSString *language;
-@property (readonly) NSString *expiration;
+@property (readonly) NSInteger expiration;
 @property (readonly) NSInteger pasteSheetWidth;
 @property (readonly) NSInteger pasteSheetHeight;
 

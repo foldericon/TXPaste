@@ -32,8 +32,6 @@
 #import "TXPasteSheet.h"
 #import "NoodleLineNumberView.h"
 
-#define _expAry [NSArray arrayWithObjects:@"-1", @"10m", @"1h", @"1d", nil]
-
 @implementation TXPasteSheet
 
 - (id)init
@@ -73,7 +71,7 @@
         [self.pasteText setInsertionPointColor:color];
     }
     [self.langBox setStringValue:[self getLangById:self.language]];
-    [self.expBox selectCellWithTag:[self getExpirationTag:self.expiration]];
+    [self.expBox selectCellWithTag:self.expiration];
 	[NSApp beginSheet:self.sheet
 	   modalForWindow:self.window
 		modalDelegate:self
@@ -90,7 +88,7 @@
 }
 
 - (IBAction)paste:(id)sender {
-    NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@&redirect=1", [self getLangId], self.pasteText.string];
+    NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@&expires=%ld&redirect=1", [self getLangId], self.pasteText.string, [self getExpiration]];
     [TXPaste paste:postString];
     [NSApp endSheet:self.sheet];
 }
@@ -98,8 +96,8 @@
 - (void)saveSettings
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
-    [dict setObject:[self getExpiration] forKey:TXPasteExpirationKey];
     [dict setObject:[self getLangId] forKey:TXPasteLanguageKey];
+    [dict setObject:[NSNumber numberWithInteger:[self getExpiration]] forKey:TXPasteExpirationKey];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
     [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
     [self setPreferences:dict];
@@ -133,20 +131,9 @@
     return langid;
 }
 
-- (NSString *)getExpiration
+- (NSInteger)getExpiration
 {
-    return _expAry[self.expBox.selectedTag-1];
-}
-
-- (NSInteger)getExpirationTag:(NSString *)expiration
-{
-    NSInteger i;
-    for(i=0; i<_expAry.count; i++) {
-        if ([_expAry[i] isEqualToString:expiration]) {
-            break;
-        }
-    }
-    return i+1;
+    return [[NSNumber numberWithLong:self.expBox.selectedTag] integerValue];
 }
 
 #pragma mark -
