@@ -33,8 +33,8 @@
 #import "TXPasteHelper.h"
 #import "TXPasteSheet.h"
 
-#define _langURL @"http://paste.directory/api/language/list"
-#define _pasteURL @"http://paste.directory/api/post"
+#define _langURL @"https://paste.directory/api/language/list"
+#define _pasteURL @"https://paste.directory/api/post"
 
 @implementation TXPaste
 
