@@ -66,14 +66,14 @@ NSMutableArray *languages;
     [helper get:[NSURL URLWithString:_langURL]];
 }
 
-- (NSArray *)pluginSupportsUserInputCommands
+- (NSArray *)subscribedUserInputCommands
 {
     return @[@"paste"];
 }
 
-- (void)messageSentByUser:(IRCClient *)client
-				  message:(NSString *)messageString
-				  command:(NSString *)commandString
+- (void)userInputCommandInvokedOnClient:(IRCClient *)client
+                          commandString:(NSString *)commandString
+                          messageString:(NSString *)messageString
 {
     if([messageString length] > 1) {
         NSString *postString = [NSString stringWithFormat:@"lang=%@&data=%@&expires=%ld&redirect=1", self.language, messageString, self.expiration];

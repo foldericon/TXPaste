@@ -33,10 +33,10 @@
 
 @interface TXPaste : TXPastePrefs
 
-- (NSArray *)pluginSupportsUserInputCommands;
-- (void)messageSentByUser:(IRCClient *)client
-				  message:(NSString *)messageString
-				  command:(NSString *)commandString;
+- (NSArray *)subscribedUserInputCommands;
+- (void)userInputCommandInvokedOnClient:(IRCClient *)client
+                          commandString:(NSString *)commandString
+                          messageString:(NSString *)messageString;
 + (void)paste:(NSString *)postString;
 
 @end
