@@ -72,6 +72,7 @@
         [self.pasteText setInsertionPointColor:[NSColor whiteColor]];
     } else {
         [lineNumbersView setBackgroundColor:[NSColor whiteColor]];
+        [lineNumbersView setAlternateTextColor:[NSColor blackColor]];        
         [self.pasteText setBackgroundColor:[NSColor whiteColor]];
         [self.pasteText setTextColor:color];
         [self.pasteText setInsertionPointColor:color];
