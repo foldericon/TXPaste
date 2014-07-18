@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		4C51BE9412D0471600E79CEB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51BE9312D0471600E79CEB /* Cocoa.framework */; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
-		DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */; };
 		DA71508717588C3100DC2063 /* TXPaste.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71508117588C3100DC2063 /* TXPaste.m */; };
 		DA71508B17588C4200DC2063 /* PasteSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA71508817588C4200DC2063 /* PasteSheet.xib */; };
 		DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */; };
-		DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */; };
-		DA846A7E18F1840800A93C43 /* TXPastePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = DA846A7D18F1840800A93C43 /* TXPastePrefs.m */; };
-		DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA89514718EB036A00FB7648 /* TXComboBoxCell.m */; };
+		DA9FE3A71979539C00AAF6D9 /* NoodleLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FE3A01979539C00AAF6D9 /* NoodleLineNumberView.m */; };
+		DA9FE3A81979539C00AAF6D9 /* TXComboBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FE3A21979539C00AAF6D9 /* TXComboBoxCell.m */; };
+		DA9FE3A91979539C00AAF6D9 /* TXPasteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FE3A41979539C00AAF6D9 /* TXPasteHelper.m */; };
+		DA9FE3AA1979539C00AAF6D9 /* TXPastePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9FE3A61979539C00AAF6D9 /* TXPastePrefs.m */; };
 		DAF00ED418D70F3000048B07 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAF00ED318D70F3000048B07 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,20 +62,20 @@
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		4C51BE9312D0471600E79CEB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8D576316048677EA00EA77CD /* TXPaste.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TXPaste.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA0F20ED18E9AF01001C95D1 /* TXPasteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXPasteHelper.h; sourceTree = "<group>"; };
-		DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXPasteHelper.m; sourceTree = "<group>"; };
 		DA71508017588C3100DC2063 /* TXPaste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPaste.h; path = Classes/TXPaste.h; sourceTree = "<group>"; };
 		DA71508117588C3100DC2063 /* TXPaste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPaste.m; path = Classes/TXPaste.m; sourceTree = "<group>"; };
 		DA71508817588C4200DC2063 /* PasteSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasteSheet.xib; path = Resources/PasteSheet.xib; sourceTree = "<group>"; };
 		DA71508917588C4200DC2063 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPasteSheet.h; path = Classes/TXPasteSheet.h; sourceTree = "<group>"; };
 		DA72473E18D5C36A00F63A7D /* TXPasteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPasteSheet.m; path = Classes/TXPasteSheet.m; sourceTree = "<group>"; };
-		DA7E264C18EC5C0A00991724 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoodleLineNumberView.h; sourceTree = "<group>"; };
-		DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoodleLineNumberView.m; sourceTree = "<group>"; };
-		DA846A7C18F1840800A93C43 /* TXPastePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXPastePrefs.h; sourceTree = "<group>"; };
-		DA846A7D18F1840800A93C43 /* TXPastePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXPastePrefs.m; sourceTree = "<group>"; };
-		DA89514618EB036A00FB7648 /* TXComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXComboBoxCell.h; sourceTree = "<group>"; };
-		DA89514718EB036A00FB7648 /* TXComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXComboBoxCell.m; sourceTree = "<group>"; };
+		DA9FE39F1979539C00AAF6D9 /* NoodleLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoodleLineNumberView.h; path = Classes/NoodleLineNumberView.h; sourceTree = "<group>"; };
+		DA9FE3A01979539C00AAF6D9 /* NoodleLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoodleLineNumberView.m; path = Classes/NoodleLineNumberView.m; sourceTree = "<group>"; };
+		DA9FE3A11979539C00AAF6D9 /* TXComboBoxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXComboBoxCell.h; path = Classes/TXComboBoxCell.h; sourceTree = "<group>"; };
+		DA9FE3A21979539C00AAF6D9 /* TXComboBoxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXComboBoxCell.m; path = Classes/TXComboBoxCell.m; sourceTree = "<group>"; };
+		DA9FE3A31979539C00AAF6D9 /* TXPasteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPasteHelper.h; path = Classes/TXPasteHelper.h; sourceTree = "<group>"; };
+		DA9FE3A41979539C00AAF6D9 /* TXPasteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPasteHelper.m; path = Classes/TXPasteHelper.m; sourceTree = "<group>"; };
+		DA9FE3A51979539C00AAF6D9 /* TXPastePrefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPastePrefs.h; path = Classes/TXPastePrefs.h; sourceTree = "<group>"; };
+		DA9FE3A61979539C00AAF6D9 /* TXPastePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TXPastePrefs.m; path = Classes/TXPastePrefs.m; sourceTree = "<group>"; };
 		DAF00ED318D70F3000048B07 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -126,14 +126,14 @@
 		08FB77AFFE84173DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DA7E264C18EC5C0A00991724 /* NoodleLineNumberView.h */,
-				DA7E264D18EC5C0A00991724 /* NoodleLineNumberView.m */,
-				DA89514618EB036A00FB7648 /* TXComboBoxCell.h */,
-				DA89514718EB036A00FB7648 /* TXComboBoxCell.m */,
-				DA0F20ED18E9AF01001C95D1 /* TXPasteHelper.h */,
-				DA0F20EE18E9AF01001C95D1 /* TXPasteHelper.m */,
-				DA846A7C18F1840800A93C43 /* TXPastePrefs.h */,
-				DA846A7D18F1840800A93C43 /* TXPastePrefs.m */,
+				DA9FE39F1979539C00AAF6D9 /* NoodleLineNumberView.h */,
+				DA9FE3A01979539C00AAF6D9 /* NoodleLineNumberView.m */,
+				DA9FE3A11979539C00AAF6D9 /* TXComboBoxCell.h */,
+				DA9FE3A21979539C00AAF6D9 /* TXComboBoxCell.m */,
+				DA9FE3A31979539C00AAF6D9 /* TXPasteHelper.h */,
+				DA9FE3A41979539C00AAF6D9 /* TXPasteHelper.m */,
+				DA9FE3A51979539C00AAF6D9 /* TXPastePrefs.h */,
+				DA9FE3A61979539C00AAF6D9 /* TXPastePrefs.m */,
 				DA71508017588C3100DC2063 /* TXPaste.h */,
 				DA71508117588C3100DC2063 /* TXPaste.m */,
 				DA72473D18D5C36A00F63A7D /* TXPasteSheet.h */,
@@ -164,7 +164,6 @@
 				DA00100C18D740B300BBF55B /* CopyFiles */,
 				8D576311048677EA00EA77CD /* Sources */,
 				8D576313048677EA00EA77CD /* Frameworks */,
-				DA2142ED18EBADD3002731AE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -214,32 +213,16 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		DA2142ED18EBADD3002731AE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "source /Users/toby/.bash_profile\ntxpaste";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8D576311048677EA00EA77CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA7E265018EC5C0A00991724 /* NoodleLineNumberView.m in Sources */,
+				DA9FE3A81979539C00AAF6D9 /* TXComboBoxCell.m in Sources */,
+				DA9FE3A71979539C00AAF6D9 /* NoodleLineNumberView.m in Sources */,
+				DA9FE3AA1979539C00AAF6D9 /* TXPastePrefs.m in Sources */,
+				DA9FE3A91979539C00AAF6D9 /* TXPasteHelper.m in Sources */,
 				DA71508717588C3100DC2063 /* TXPaste.m in Sources */,
-				DA846A7E18F1840800A93C43 /* TXPastePrefs.m in Sources */,
-				DA0F20EF18E9AF01001C95D1 /* TXPasteHelper.m in Sources */,
-				DA89514818EB036A00FB7648 /* TXComboBoxCell.m in Sources */,
 				DA72473F18D5C36A00F63A7D /* TXPasteSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,14 +233,14 @@
 		1DEB911B08733D790010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = /Applications/Textual.app/Contents/MacOS/Textual;
+				BUNDLE_LOADER = "/Applications/Textual 5.app/Contents/MacOS/Textual 5";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "/Applications/Textual.app/Contents/Frameworks/**";
+				FRAMEWORK_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Frameworks\"/**";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = /Applications/Textual.app/Contents/Headers;
+				HEADER_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Headers\"";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -271,12 +254,12 @@
 		1DEB911C08733D790010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = /Applications/Textual.app/Contents/MacOS/Textual;
+				BUNDLE_LOADER = "/Applications/Textual 5.app/Contents/MacOS/Textual 5";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "/Applications/Textual.app/Contents/Frameworks/**";
+				FRAMEWORK_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Frameworks\"/**";
 				GCC_MODEL_TUNING = G5;
-				HEADER_SEARCH_PATHS = /Applications/Textual.app/Contents/Headers;
+				HEADER_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Headers\"";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -297,7 +280,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				FRAMEWORK_SEARCH_PATHS = "/Applications/Textual.app/Contents/Frameworks/**";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				FRAMEWORK_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Frameworks\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -307,8 +291,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /Applications/Textual.app/Contents/Headers;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				HEADER_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Headers\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
@@ -325,7 +309,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				FRAMEWORK_SEARCH_PATHS = "/Applications/Textual.app/Contents/Frameworks/**";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				FRAMEWORK_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Frameworks\"/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -334,8 +319,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /Applications/Textual.app/Contents/Headers;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				HEADER_SEARCH_PATHS = "\"/Applications/Textual 5.app/Contents/Headers\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
