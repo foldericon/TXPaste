@@ -37,7 +37,10 @@
 - (id)init
 {
 	if ((self = [super init])) {
-        [NSBundle loadNibNamed:@"PasteSheet" owner:self];
+        if ([[NSBundle bundleForClass:[self class]] loadNibNamed:@"PasteSheet" owner:self topLevelObjects:nil] == NO) {
+            NSLog(@"TXPaste: Failed to load view.");
+        }
+        
     }
 	return self;
 }
