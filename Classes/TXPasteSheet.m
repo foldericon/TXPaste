@@ -104,8 +104,6 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
     [dict setObject:[self getLangId] forKey:TXPasteLanguageKey];
     [dict setObject:[NSNumber numberWithInteger:[self getExpiration]] forKey:TXPasteExpirationKey];
-    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
-    [dict setObject:[NSNumber numberWithInteger:self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
     [self setPreferences:dict];
 }
 
@@ -151,6 +149,14 @@
     [self.sheet close];
 }
 
+- (void)windowDidEndLiveResize:(NSNotification *)notification
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
+    [dict setObject:[NSNumber numberWithInteger:(int)self.sheet.frame.size.width] forKey:TXPasteSheetWidthKey];
+    [dict setObject:[NSNumber numberWithInteger:(int)self.sheet.frame.size.height] forKey:TXPasteSheetHeightKey];
+    [self setPreferences:dict];
+    [self.pasteText focus];
+}
 
 - (void)controlTextDidChange:(NSNotification *)notification
 {

@@ -37,7 +37,7 @@
 
 @class NoodleLineNumberView;
 
-@interface TXPasteSheet : TXPastePrefs <NSComboBoxDelegate, NSTextViewDelegate> {
+@interface TXPasteSheet : TXPastePrefs <NSComboBoxDelegate, NSTextViewDelegate, NSWindowDelegate> {
     IBOutlet NSScrollView *scrollView;
 }
 
