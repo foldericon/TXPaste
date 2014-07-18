@@ -72,7 +72,7 @@
         [self.pasteText setInsertionPointColor:[NSColor whiteColor]];
     } else {
         [lineNumbersView setBackgroundColor:[NSColor whiteColor]];
-        [lineNumbersView setAlternateTextColor:[NSColor blackColor]];        
+        [lineNumbersView setAlternateTextColor:[NSColor blackColor]];
         [self.pasteText setBackgroundColor:[NSColor whiteColor]];
         [self.pasteText setTextColor:color];
         [self.pasteText setInsertionPointColor:color];
@@ -85,7 +85,6 @@
 	   didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:nil];
     [self.window makeKeyAndOrderFront:self.sheet];
-    [self.sheet makeFirstResponder:self.langBox];
     [self.sheet makeFirstResponder:self.pasteText];
 }
 
