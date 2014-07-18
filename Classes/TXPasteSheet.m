@@ -107,7 +107,6 @@
     [self setPreferences:dict];
 }
 
-
 #pragma mark -
 #pragma mark Helper Methods
 

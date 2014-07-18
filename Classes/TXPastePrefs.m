@@ -12,6 +12,8 @@ NSString *TXPasteSheetWidthKey = @"TXPasteSheetWidth";
 NSString *TXPasteSheetHeightKey = @"TXPasteSheetHeight";
 NSString *TXPasteExpirationKey = @"TXPasteExpiration";
 NSString *TXPasteLanguageKey = @"TXPasteLanguage";
+NSString *TXPasteLastCachedDateKey = @"TXPasteLastCachedDate";
+NSString *TXPasteCachedLanguagesKey = @"TXPasteCachedLanguages";
 
 @implementation TXPastePrefs
 
@@ -24,16 +26,32 @@ NSString *TXPasteLanguageKey = @"TXPasteLanguage";
                               @"350", TXPasteSheetHeightKey,
                               @"0", TXPasteExpirationKey,
                               @"text", TXPasteLanguageKey,
+                              @"0", TXPasteLastCachedDateKey,
+                              [NSArray array], TXPasteCachedLanguagesKey,
                               nil];
         [self setPreferences:dict];
     }
-    
-    return [NSDictionary dictionaryWithContentsOfFile:[self preferencesPath]];
+
+    NSPropertyListFormat format;
+    NSError *error;
+    id plist = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:self.preferencesPath]
+                                                         options:NSPropertyListImmutable
+                                                          format:&format
+                                                           error:&error]; 
+    return plist;
 }
 
 - (void)setPreferences:(NSDictionary *)dictionary
 {
-    [dictionary writeToFile:[self preferencesPath] atomically:YES];
+    NSData *serializedData;
+    NSString *error;
+    serializedData = [NSPropertyListSerialization dataFromPropertyList:dictionary
+                                                                format:NSPropertyListBinaryFormat_v1_0
+                                                      errorDescription:&error];
+    if (serializedData)
+        [serializedData writeToFile:[self preferencesPath] atomically:YES];
+    else
+        NSLog(@"Error: %@", error);
 }
 
 - (NSString *)preferencesPath
@@ -59,5 +77,15 @@ NSString *TXPasteLanguageKey = @"TXPasteLanguage";
 - (NSInteger)pasteSheetHeight
 {
     return [[self.preferences objectForKey:TXPasteSheetHeightKey] integerValue];
+}
+
+- (NSInteger)lastCachedDate
+{
+    return [[self.preferences objectForKey:TXPasteLastCachedDateKey] integerValue];
+}
+
+- (NSArray *)cachedLanguages
+{
+    return [self.preferences objectForKey:TXPasteCachedLanguagesKey];
 }
 @end

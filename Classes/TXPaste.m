@@ -38,32 +38,34 @@
 
 @implementation TXPaste
 
-NSMutableArray *languages;
-
 #pragma mark -
 #pragma mark Plugin API
 
 - (void)pluginLoadedIntoMemory:(IRCWorld *)world
 {
-    TXPasteHelper *helper = [[TXPasteHelper alloc] init];
-    [helper setDelegate:self];
-    __block NSError *e;
-    languages = [[NSMutableArray alloc] init];
-    [helper setCompletionBlock:^(NSError *error) {
-        if(error.code == 100) {
-            NSArray *ary = [NSJSONSerialization JSONObjectWithData:helper.receivedData options:0 error:&e];
-            for (NSDictionary *dict in ary) {
-                [languages addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      [dict objectForKey:@"API"], @"id",
-                                      [dict objectForKey:@"name"], @"name",
-                                      nil]];
+    // Cache languages once a week
+    if([[NSDate date] timeIntervalSince1970] > self.lastCachedDate + 604800) {
+        TXPasteHelper *helper = [[TXPasteHelper alloc] init];
+        [helper setDelegate:self];
+        __block NSError *e;
+        NSMutableArray *languages = [[NSMutableArray alloc] init];
+        [helper setCompletionBlock:^(NSError *error) {
+            if(error.code == 100) {
+                NSArray *ary = [NSJSONSerialization JSONObjectWithData:helper.receivedData options:0 error:&e];
+                for (NSDictionary *dict in ary) {
+                    [languages addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          [dict objectForKey:@"API"], @"id",
+                                          [dict objectForKey:@"name"], @"name",
+                                          nil]];
+                }
+                [self cacheLanguages:languages];
+            } else {
+                IRCClient *client = self.masterController.masterController.mainWindow.selectedClient;
+                [client printDebugInformation:[NSString stringWithFormat:@"TXPaste: Unable to fetch list of languages (%@)", error.userInfo]];
             }
-        } else {
-            IRCClient *client = self.masterController.masterController.mainWindow.selectedClient;
-            [client printDebugInformation:[NSString stringWithFormat:@"TXPaste: Unable to fetch list of languages (%@)", error.userInfo]];
-        }
-    }];
-    [helper get:[NSURL URLWithString:_langURL]];
+        }];
+        [helper get:[NSURL URLWithString:_langURL]];
+    }
 }
 
 - (NSArray *)subscribedUserInputCommands
@@ -80,10 +82,9 @@ NSMutableArray *languages;
         [TXPaste paste:postString];
     } else {
         TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
-        pasteSheet.languages = languages;
+        pasteSheet.languages = [self.cachedLanguages mutableCopy];
         [pasteSheet start];
     }
-    
 }
 
 + (void)paste:(NSString *)postString
@@ -101,6 +102,14 @@ NSMutableArray *languages;
         }
     }];
     [helper get:[NSURL URLWithString:_pasteURL]];
+}
+
+- (void)cacheLanguages:(NSArray *)languages
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:[self preferences]];
+    [dict setObject:languages forKey:TXPasteCachedLanguagesKey];
+    [dict setObject:[NSNumber numberWithInteger:[[NSDate date] timeIntervalSince1970]] forKey:TXPasteLastCachedDateKey];
+    [self setPreferences:dict];
 }
 
 @end

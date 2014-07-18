@@ -12,6 +12,8 @@ extern NSString *TXPasteSheetWidthKey;
 extern NSString *TXPasteSheetHeightKey;
 extern NSString *TXPasteExpirationKey;
 extern NSString *TXPasteLanguageKey;
+extern NSString *TXPasteLastCachedDateKey;
+extern NSString *TXPasteCachedLanguagesKey;
 
 @interface TXPastePrefs : NSObject
 
@@ -21,5 +23,7 @@ extern NSString *TXPasteLanguageKey;
 @property (readonly) NSInteger expiration;
 @property (readonly) NSInteger pasteSheetWidth;
 @property (readonly) NSInteger pasteSheetHeight;
+@property (readonly) NSInteger lastCachedDate;
+@property (readonly) NSArray *cachedLanguages;
 
 @end
