@@ -58,6 +58,9 @@
     [self.langBox setDelegate:self];
     [self.pasteText setDelegate:self];
     [self.pasteText setFont:[NSFont userFixedPitchFontOfSize:[NSFont systemFontSize]]];
+    [self.pasteText setAutomaticTextReplacementEnabled:NO];
+    [self.pasteText setAutomaticQuoteSubstitutionEnabled:NO];
+    
     NSColor *color = [NSColor colorWithCalibratedRed:0.09 green:0.09 blue:0.09 alpha:1.0];
     if([TPCPreferences invertSidebarColors]) {
         [lineNumbersView setBackgroundColor:color];
