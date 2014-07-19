@@ -82,7 +82,7 @@
         [TXPaste paste:postString];
     } else {
         TXPasteSheet *pasteSheet = [[TXPasteSheet alloc] init];
-        pasteSheet.languages = [self.cachedLanguages mutableCopy];
+        pasteSheet.languages = self.cachedLanguages;
         [pasteSheet start];
     }
 }

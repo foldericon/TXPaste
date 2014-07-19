@@ -41,7 +41,7 @@
     IBOutlet NSScrollView *scrollView;
 }
 
-@property (assign) NSArray *languages;
+@property (nonatomic, copy) NSArray *languages;
 @property (assign) NSString *pasteURL;
 @property (assign) NSWindow *window;
 @property (nonatomic, strong) IBOutlet NSWindow *sheet;
