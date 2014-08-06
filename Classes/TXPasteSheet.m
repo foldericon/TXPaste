@@ -51,12 +51,6 @@
     NSRect rect = NSMakeRect(self.sheet.frame.origin.x, self.sheet.frame.origin.y, self.pasteSheetWidth, self.pasteSheetHeight);
     [self.sheet setFrame:rect display:YES];
     self.window = self.masterController.mainWindow;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NoodleLineNumberView *lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
-        [scrollView setVerticalRulerView:lineNumbersView];
-        [scrollView setHasHorizontalRuler:NO];
-        [scrollView setHasVerticalRuler:YES];
-        [scrollView setRulersVisible:YES];
         for (NSDictionary *dict in self.languages) {
             [self.langBox addItemWithObjectValue:[dict objectForKey:@"name"]];
         }
@@ -65,7 +59,13 @@
         [self.pasteText setFont:[NSFont userFixedPitchFontOfSize:[NSFont systemFontSize]]];
         [self.pasteText setAutomaticTextReplacementEnabled:NO];
         [self.pasteText setAutomaticQuoteSubstitutionEnabled:NO];
-        
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NoodleLineNumberView *lineNumbersView = [[NoodleLineNumberView alloc] initWithScrollView:scrollView];
+        [scrollView setVerticalRulerView:lineNumbersView];
+        [scrollView setHasHorizontalRuler:NO];
+        [scrollView setHasVerticalRuler:YES];
+        [scrollView setRulersVisible:YES];
         NSColor *color = [NSColor colorWithCalibratedRed:0.09 green:0.09 blue:0.09 alpha:1.0];
         if([TPCPreferences invertSidebarColors]) {
             [lineNumbersView setBackgroundColor:color];
@@ -79,11 +79,13 @@
             [self.pasteText setTextColor:color];
             [self.pasteText setInsertionPointColor:color];
         }
+    
         [self.langBox setStringValue:[self getLangById:self.language]];
         [self.expBox selectCellWithTag:self.expiration];
         [self.window makeKeyAndOrderFront:self.sheet];
+
         [self.sheet makeFirstResponder:self.pasteText];
-        
+
         [NSApp beginSheet:self.sheet
            modalForWindow:self.window
             modalDelegate:self
